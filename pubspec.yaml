@@ -41,6 +41,7 @@ dependencies:
   firebase_ui_firestore: ^1.5.6
   intl: ^0.18.0
   flutter_native_splash: ^2.3.1
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +62,11 @@ flutter_native_splash:
   android_12:
     color: "#000000"
     image: assets/icons/codegeek-round.png
+    
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/codegeek.png"
 
 # The following section is specific to Flutter packages.
 flutter:
