@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
         query: firestoreRepository.getProducts(),
         builder: (context, snapshot, child) {
           if (snapshot.isFetching) {
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasError) {
