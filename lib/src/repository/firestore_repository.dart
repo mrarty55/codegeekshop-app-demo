@@ -8,4 +8,8 @@ class FirestoreRepository {
   Query<Map<String, dynamic>> getProducts() {
     return firestore.collection("products").limit(10);
   }
+
+  Future<DocumentSnapshot<Map<String, dynamic>>> getProduct(String id) {
+    return firestore.collection("products").doc(id).get();
+  }
 }

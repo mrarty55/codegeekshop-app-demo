@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:codegeekshop/src/routing/app_router.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../repository/firestore_repository.dart';
@@ -19,6 +21,10 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     firestoreRepository = FirestoreRepository(FirebaseFirestore.instance);
     super.initState();
+  }
+
+  void onTapProductCard(BuildContext context, {required String productId}) {
+    context.pushNamed(AppRoute.product.name, pathParameters: {"id": productId});
   }
 
   @override
@@ -65,7 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
               return Card(
                 margin: EdgeInsets.zero,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    onTapProductCard(context, productId: product.id);
+                  },
                   child: Column(
                     children: [
                       Flexible(
