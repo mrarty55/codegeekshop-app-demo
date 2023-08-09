@@ -19,7 +19,7 @@ final appRouter = GoRouter(
         GoRoute(
           path: "products",
           redirect: (_, __) =>
-              "/", // Redirect to / if user click a link with path matches /products
+              "/", // Redirect to / if user click a link with path "/products"
         ),
         GoRoute(
           path: "products/:id",
