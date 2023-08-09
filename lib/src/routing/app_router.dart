@@ -17,6 +17,11 @@ final appRouter = GoRouter(
       builder: (_, __) => const HomeScreen(),
       routes: [
         GoRoute(
+          path: "products",
+          redirect: (_, __) =>
+              "/", // Redirect to / if user click a link with path matches /products
+        ),
+        GoRoute(
           path: "products/:id",
           builder: (_, state) =>
               ProductScreen(productId: state.pathParameters['id']),
