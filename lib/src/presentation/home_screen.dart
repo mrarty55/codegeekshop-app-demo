@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:codegeekshop/src/routing/app_router.dart';
+import '../routing/app_router.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -56,23 +56,22 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             itemCount: snapshot.docs.length,
             itemBuilder: (context, index) {
-              final product = snapshot.docs[index];
+              final product = snapshot.docs[index].data();
 
               if (snapshot.hasMore && index + 1 == snapshot.docs.length) {
                 snapshot.fetchMore();
               }
 
-              final imageProvider =
-                  (product.data()['imageUrl'] as String).isNotEmpty
-                      ? NetworkImage(product.data()['imageUrl'])
-                      : const AssetImage("assets/icons/codegeek.png")
-                          as ImageProvider;
+              final imageProvider = (product?.imageUrl as String).isNotEmpty
+                  ? NetworkImage(product?.imageUrl ?? "")
+                  : const AssetImage("assets/icons/codegeek.png")
+                      as ImageProvider;
 
               return Card(
                 margin: EdgeInsets.zero,
                 child: InkWell(
                   onTap: () {
-                    onTapProductCard(context, productId: product.id);
+                    onTapProductCard(context, productId: product?.id ?? "");
                   },
                   child: Column(
                     children: [
@@ -96,11 +95,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(product.data()['name'],
+                              Text(product?.name ?? "",
                                   style:
                                       Theme.of(context).textTheme.labelLarge),
                               Text(
-                                  "${product.data()['currencyUnit']} ${NumberFormat('#,###').format(product.data()['price'])}"),
+                                  "${product?.currencyUnit} ${NumberFormat('#,###').format(product?.price)}"),
                             ],
                           ),
                         ),

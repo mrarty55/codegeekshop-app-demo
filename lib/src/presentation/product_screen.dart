@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:codegeekshop/src/entity/product.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -20,7 +21,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
   bool isLoading = true;
 
-  Map<String, dynamic>? product;
+  Product? product;
 
   @override
   void initState() {
@@ -48,7 +49,7 @@ class _ProductScreenState extends State<ProductScreen> {
       appBar: AppBar(
         title: Text(!isError
             ? product != null
-                ? product!['name']
+                ? product?.name ?? ""
                 : ""
             : '404'),
       ),
@@ -68,23 +69,23 @@ class _ProductScreenState extends State<ProductScreen> {
 
           return Column(
             children: [
-              if (product != null) ...[Image.network(product!['imageUrl'])],
+              if (product != null) ...[Image.network(product?.imageUrl ?? "")],
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      product != null ? product!['name'] : "N/A",
+                      product != null ? product?.name ?? "" : "N/A",
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     Text(
                       product != null
-                          ? "${product!['currencyUnit']} ${NumberFormat('#,###').format(product!['price'])}"
+                          ? "${product?.currencyUnit} ${NumberFormat('#,###').format(product?.price)}"
                           : "N/A",
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
-                    Text(product != null ? product!['description'] : "N/A"),
+                    Text(product != null ? product?.description ?? "" : "N/A"),
                     Row(
                       children: [
                         FilledButton.icon(
