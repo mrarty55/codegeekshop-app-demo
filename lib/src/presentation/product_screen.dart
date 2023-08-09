@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../entity/product.dart';
 import '../repository/firestore_repository.dart';
+import '../utils/number_format_extension.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key, this.productId});
@@ -81,7 +81,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     ),
                     Text(
                       product != null
-                          ? "${product?.currencyUnit} ${NumberFormat('#,###').format(product?.price)}"
+                          ? "${product?.currencyUnit} ${product?.price.toKipString()}"
                           : "N/A",
                       style: Theme.of(context).textTheme.labelLarge,
                     ),

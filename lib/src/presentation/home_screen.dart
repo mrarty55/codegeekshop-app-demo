@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 
 import '../repository/firestore_repository.dart';
 import '../routing/app_router.dart';
+import '../utils/number_format_extension.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   style:
                                       Theme.of(context).textTheme.labelLarge),
                               Text(
-                                  "${product?.currencyUnit} ${NumberFormat('#,###').format(product?.price)}"),
+                                  "${product?.currencyUnit} ${product?.price.toKipString()}"),
                             ],
                           ),
                         ),
