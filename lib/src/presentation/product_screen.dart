@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:codegeekshop/src/entity/product.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../entity/product.dart';
 import '../repository/firestore_repository.dart';
 
 class ProductScreen extends StatefulWidget {
